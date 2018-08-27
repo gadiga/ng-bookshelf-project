@@ -3,7 +3,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/toPromise';
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import {Book} from './book';
 
 @Injectable()

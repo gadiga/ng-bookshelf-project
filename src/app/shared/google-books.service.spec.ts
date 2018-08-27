@@ -482,7 +482,7 @@ fdescribe('GoogleBooksService', () => {
 
       // Perform a request and make sure we get the response we expect
       let book: Book = null;
-      service.retrieveBook("js2P_8lbR2wC").subscribe(value => book = value);
+      service.retrieveBook("js2P_8lbR2wC").subscribe(value => book = value.json());
       tick();
 
       expect(book.id).toBe("js2P_8lbR2wC");
