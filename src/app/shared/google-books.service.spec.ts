@@ -6,7 +6,7 @@ import {HttpModule, BaseRequestOptions, Http, ResponseOptions, Response} from "@
 import {MockBackend} from "@angular/http/testing";
 import {Book} from "./book";
 
-describe('GoogleBooksService', () => {
+fdescribe('GoogleBooksService', () => {
 
   let service: GoogleBooksService;
   let backend: MockBackend;
