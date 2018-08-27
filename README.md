@@ -1,6 +1,6 @@
 # Bookshelf
 
-- This is the final project for the [CodeCraft Angular Course](https://ng2.codecraft.tv/) 
+- This is the final project for the [CodeCraft Angular Course](https://ng2.codecraft.tv/) --> updated to Angular 6 
 - In this project you will create an Angular CLI powered SPA, consuming the Google Books API, implementing search, pagination as well as saving favorite books to local storage.
 - Before you start this project make sure you have either gone through the official 
 [CodeCraft Angular Course or Book](https://ng2.codecraft.tv/) - it's *FREE* - or are comfortable with the material and sections in that course already.
