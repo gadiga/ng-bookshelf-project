@@ -3,8 +3,9 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/toPromise';
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
-import {Observable} from 'rxjs';
+import {Observable, empty, Subject} from 'rxjs';
 import {Book} from './book';
+import { map } from 'rxjs/operator/map';
 
 @Injectable()
 export class GoogleBooksService {
@@ -16,9 +17,11 @@ export class GoogleBooksService {
   public pageSize: number = 10;
   public query: string = "";
   public books: Book[];
+  public books$: Subject<Book[]>;
 
 
   constructor(private http: Http) {
+    this.books$ = new Subject();
   }
 
   get startIndex() {
@@ -64,11 +67,16 @@ export class GoogleBooksService {
       })
       // .do(books => console.log(books))
       .do(_ => this.loading = false)
-      .subscribe((books) => this.books = books)
+      .subscribe((books) => {
+        this.books = books;
+        this.books$.next(this.books);
+      })
   }
 
   retrieveBook(bookId: string) {
     return this.http.get(`${this.API_PATH}/${bookId}`)
+    .map(resp=>resp.json())
+    .map(json=>this.bookFactory(json));
   }
 
   private bookFactory(item: any): Book {
@@ -81,8 +89,8 @@ export class GoogleBooksService {
       item.volumeInfo.publishedDate,
       item.volumeInfo.description,
       item.volumeInfo.categories ? item.volumeInfo.categories.map((item) => item.split("/").pop().trim()) : ['N/A'],
-      item.volumeInfo.imageLinks.thumbnail,
-      item.volumeInfo.imageLinks.smallThumbnail
+      item.volumeInfo.imageLinks ? item.volumeInfo.imageLinks.thumbnail : '',
+      item.volumeInfo.imageLinks ? item.volumeInfo.imageLinks.smallThumbnail : ''
     )
   }
 }

@@ -31,7 +31,6 @@ import {LibraryService} from "./shared/library.service";
     HttpModule,
     BrowserModule,
     ReactiveFormsModule,
-    FormsModule,
     RouterModule.forRoot(routes)
   ],
   providers: [GoogleBooksService, LibraryService],

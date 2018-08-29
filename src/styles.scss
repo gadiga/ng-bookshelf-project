@@ -1,4 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.css";
+
+
+body {
+  padding-top: 100px;
+}
+
 .mr-1 {
   margin-right: 2px;
 }

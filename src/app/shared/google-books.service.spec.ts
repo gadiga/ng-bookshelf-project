@@ -6,7 +6,7 @@ import {HttpModule, BaseRequestOptions, Http, ResponseOptions, Response} from "@
 import {MockBackend} from "@angular/http/testing";
 import {Book} from "./book";
 
-fdescribe('GoogleBooksService', () => {
+describe('GoogleBooksService', () => {
 
   let service: GoogleBooksService;
   let backend: MockBackend;
@@ -482,7 +482,7 @@ fdescribe('GoogleBooksService', () => {
 
       // Perform a request and make sure we get the response we expect
       let book: Book = null;
-      service.retrieveBook("js2P_8lbR2wC").subscribe(value => book = value.json());
+      service.retrieveBook("js2P_8lbR2wC").subscribe(value => book = value);
       tick();
 
       expect(book.id).toBe("js2P_8lbR2wC");
