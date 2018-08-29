@@ -1,11 +1,12 @@
-import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
-import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
-import {Observable, empty, Subject} from 'rxjs';
-import {Book} from './book';
-import { map } from 'rxjs/operator/map';
+
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+
+import { Book } from './book';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class GoogleBooksService {
@@ -17,7 +18,7 @@ export class GoogleBooksService {
   public pageSize: number = 10;
   public query: string = "";
   public books: Book[];
-  public books$: Subject<Book[]>;
+  public books$: Subject<any>;
 
 
   constructor(private http: Http) {
@@ -54,6 +55,7 @@ export class GoogleBooksService {
     this.loading = true;
     this.initialised = true;
     this.books = [];
+    this.emitMessage();
     this.http.get(`${this.API_PATH}?q=${this.query}&maxResults=${this.pageSize}&startIndex=${this.startIndex}`)
       .map(res => res.json())
       .do(data => {
@@ -68,9 +70,19 @@ export class GoogleBooksService {
       // .do(books => console.log(books))
       .do(_ => this.loading = false)
       .subscribe((books) => {
-        this.books = books;
-        this.books$.next(this.books);
+        this.books = books;        
+        this.emitMessage();
       })
+  }
+
+  private emitMessage () {    
+    this.books$.next({
+      query: this.query,
+      loading: this.loading,
+      initialised: this.initialised,
+      books: this.books,
+      totalItems: this.totalItems
+    });
   }
 
   retrieveBook(bookId: string) {

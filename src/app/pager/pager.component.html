@@ -1,11 +1,11 @@
 <footer>
-  <ul class="pager">
-    <li>
-      <a> &larr; Previous
+  <ul class="pagination">
+    <li class="page-item" [class.disabled]="page === 1">
+      <a class="page-link" (click)="prev()"> &larr; Previous
       </a>
     </li>
-    <li>
-      <a>Next &rarr;
+    <li class="page-item" [class.disabled]="page === totalPages">
+      <a class="page-link" (click)="next()">Next &rarr;
       </a>
     </li>
   </ul>

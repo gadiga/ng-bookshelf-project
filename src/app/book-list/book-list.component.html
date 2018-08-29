@@ -1,61 +1,33 @@
-<div class="row m-3" *ngFor="let book of books; let ind=index">
+<div class="row m-3">
 
-  <div class="col-md-4 col-lg-3 col-sm-1">
-    <div class="card card-default">
-      <div class="card-heading">
-        <h3 class="card-title">
-          <a>{{book.title}}</a>
-        </h3>
-      </div>
-      <div class="card-body text-center">
-        <h6 class="card-subtitle mb-2 text-muted">{{ book.subTitle }}</h6>
-        <div class="card-text">
-          <span class="mr-1 badge badge-pill badge-secondary" *ngFor="let cat of book.categories">
-            {{ cat }}
+  <ng-container *ngFor="let book of books; let ind=index">
+    <div class="col-md-4 col-lg-3 col-sm-1">
+      <div class="card card-default">
+        <div class="card-heading">
+          <h3 class="card-title">
+            <a>{{book.title}}</a>
+          </h3>
+        </div>
+        <div class="card-body text-center">
+          <h6 class="card-subtitle mb-2 text-muted">{{ book.subTitle }}</h6>
+          <div class="card-text">
+            <span class="mr-1 badge badge-pill badge-secondary" *ngFor="let cat of book.categories">
+              {{ cat }}
+            </span>
+          </div>
+        </div>
+        <img class="book-thumbnail" [src]="book.thumbnail" alt="">
+        <div class="card-footer">
+          <span>
+            by
+            <span>
+              {{ book.authors }}
+            </span>
           </span>
         </div>
       </div>
-      <img class="book-thumbnail"
-           [src]="book.thumbnail"
-           alt="">
-      <div class="card-footer">
-        <span>
-          by
-          <span>
-            {{ book.authors }}
-          </span>
-        </span>
-      </div>
     </div>
-  </div>
-
-  <div class="col-md-4 col-lg-3 col-sm-1">
-    <div class="card card-default">
-      <div class="card-heading">
-        <h3 class="card-title">
-          <a>{{book.title}}</a>
-        </h3>
-      </div>
-      <div class="card-body text-center">
-        <h6 class="card-subtitle mb-2 text-muted">{{ book.subTitle }}</h6>
-        <div class="card-text">
-          <span class="mr-1 badge badge-pill badge-secondary" *ngFor="let cat of book.categories">
-            {{ cat }}
-          </span>
-        </div>
-      </div>
-      <img class="book-thumbnail"
-           [src]="book.thumbnail"
-           alt="">
-      <div class="card-footer">
-        <span>
-          by
-          <span>
-            {{ book.authors }}
-          </span>
-        </span>
-      </div>
-    </div>
-  </div>
+    <div *ngIf="(ind+1)%2 === 0" class="w-100"></div>
+  </ng-container>
 
 </div>

@@ -1,32 +1,28 @@
 <div class="container">
   <div class="m-3 text-center">
-    <form class="form-inline" (ngSubmit)="doSearch(searchItem.value)">
+    <form class="form-inline" (ngSubmit)="doSearch()">
       <div class="form-group">
-        <input type="search"
-               class="form-control"
-               placeholder="Enter search string"
-               name="search"
-               #searchItem
-               required>
+        <input type="search" class="form-control" placeholder="Enter search string" #searchItem name="term" [(ngModel)]="term" required>
       </div>
-      <button type="submit"
-              class="btn btn-primary">
+      <button type="submit" class="btn btn-primary">
         Search
       </button>
     </form>
     <hr />
 
     <div class="text-center">
-      <p class="lead">{{ searchStatus }}</p>      
+      <p class="lead">{{ searchStatus }}</p>
     </div>
   </div>
 
-  <!-- TODO: Show the results of the search -->
-  <app-book-list [books]="books"></app-book-list>
+  <app-book-list [books]="google.books"></app-book-list>
 
-  <div class="d-flex justify-content-center">
-    <!-- TODO: Show pagnation -->
-    <app-pager>
+  <button type="button" class="btn btn-primary">
+      Page {{ google.page }} of <span class="badge badge-light">{{ google.totalPages }}</span>
+  </button>
+
+  <div class="d-flex justify-content-center">    
+    <app-pager [totalPages]="google.totalPages" [page]="google.page" (pageMove)="getPage($event)">
     </app-pager>
   </div>
 </div>
