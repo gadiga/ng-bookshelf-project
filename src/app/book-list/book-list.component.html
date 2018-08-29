@@ -1,11 +1,11 @@
 <div class="row m-3">
 
   <ng-container *ngFor="let book of books; let ind=index">
-    <div class="col-md-4 col-lg-3 col-sm-1">
+    <div class="mh-25 col-md-4 col-lg-3 col-sm-1">
       <div class="card card-default">
         <div class="card-heading">
           <h3 class="card-title">
-            <a>{{book.title}}</a>
+            <a class="card-link" (click)="getBookDetail(book)">{{book.title}}</a>
           </h3>
         </div>
         <div class="card-body text-center">
